@@ -1,3 +1,4 @@
+# pylint: disable=redefined-outer-name
 """Tests for microservice"""
 import json
 import jsend
@@ -26,4 +27,3 @@ def test_default_error(client):
 
     expected_msg_error = jsend.error('404 - Not Found')
     assert json.loads(response.content) == expected_msg_error
-    
