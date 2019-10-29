@@ -37,12 +37,20 @@ jobs:
           paths:
             - ./venv
           key: v1-dependencies-{{ checksum "Pipfile.lock" }}
+
+      # run pre-commits
+      - run:
+          name: run pre-commit
+          command: |
+            pipenv run pre-commit run --all-files
       
       - run:
           name: start gunicorn
           command: |
             pipenv run gunicorn 'service.microservice:start_service()'
           background: true
+
+        
 
       # run tests!
       # this example uses Django's built-in test-runner
