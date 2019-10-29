@@ -4,4 +4,6 @@
       name: pylint
       language: system
       types: [python]
-      entry: "pipenv run pylint"
+      # pylint fails on use of constants in falcon 2
+      # https://github.com/falconry/falcon/issues/1553
+      entry: "pipenv run pylint --extension-pkg-whitelist=falcon"
